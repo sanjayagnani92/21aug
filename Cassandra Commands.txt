@@ -1,0 +1,95 @@
+ CREATE KEYSPACE smsdb
+WITH replication = {'class':'SimpleStrategy', 'replication_factor' : 3};
+
+String query =" INSERT INTO user (id,username,firstname,lastname,email,address,password,phone,roleid) VALUES("+uniqueID+",'sanjayaganani92','sanjay','Agnani', 'sanjagnani92@gmail.com','Ahmedabad','1223',9601486744,2)”;
+		
+
+
+ALTER TABLE users ADD coupon_code varchar;
+
+ALTER TABLE cycling.cyclist_alt_stats ADD favorite_color varchar; 
+ALTER TABLE cycling.cyclist_alt_stats ALTER favorite_color TYPE text;
+
+
+
+UPDATE t1 SET col1 = col1 + 1, col2 = col1;
+
+
+CQLSH : Unable to Login 
+
+
+InvalidRequest: Error from server: code=2200 [Invalid query] message="Cannot execute this query as it might involve data filtering and thus may have unpredictable performance. If you want to execute this query despite the performance unpredictability, use ALLOW FILTERING"
+
+
+cqlsh:smsdb> select * from user where username ='sam' ALLOW FILTERING;
+
+
+
+	for (Row row : result) {
+			System.out.format("%s %d %sn", row.getString("firstname"),
+					row.getInt("id"), row.getString("address"));
+	System.out.println("");
+		}
+
+
+
+@RequestMapping(value = "/loginProcess", method = RequestMethod.POST)
+	public ModelAndView loginprocess(HttpServletRequest request, HttpServletResponse response, Model model,
+			@ModelAttribute("login") Login login) {
+
+		System.out.println("Username:" + login.getUsername());
+		String s = "sanjay";
+		System.out.println(s.compareTo(login.getUsername()));
+
+		
+		String query = "select * from user where username ='"+login.getUsername()+"' ALLOW FILTERING; ";
+		session.execute(query);
+		ResultSet result = session.execute(query);
+		
+	
+		
+		for (Row row : result) {
+			System.out.format("%s %d %sn", row.getString("firstname"),
+					row.getInt("id"), row.getString("address"));
+	System.out.println("");
+		}
+		
+		
+		System.out.println(result.all());
+		System.out.println(result.all().toString());
+		System.out.println(Row.class);
+	
+		
+		
+	
+		
+		System.out.println(Row.class);
+		   
+		System.out.println(result.getColumnDefinitions());
+	
+		
+		if (s.compareTo(login.getUsername()) == 0) {
+				model.addAttribute("message", login.getUsername() + " Logged in Successfully");
+			List<User> list=new ArrayList<User>();  
+	        list.add(new User("s","rahul","S.Engineer"));  
+	        list.add(new User("sd","aditya","IT Manager"));  
+	        list.add(new User("ssa","sachin","Care Taker"));  
+	          
+	        return new ModelAndView("s","list",list);  
+			
+			
+			//return "s";
+
+		}
+
+		else {
+			model.addAttribute("message", "Please check entered username and password");
+
+			System.out.println(response.getStatus());
+			//return "login";
+			String list ="s";
+			  return new ModelAndView("login","list",list);  
+				
+		}
+
+	}
