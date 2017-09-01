@@ -4,6 +4,8 @@ WITH replication = {'class':'SimpleStrategy', 'replication_factor' : 3};
 String query =" INSERT INTO user (id,username,firstname,lastname,email,address,password,phone,roleid) VALUES("+uniqueID+",'sanjayaganani92','sanjay','Agnani', 'sanjagnani92@gmail.com','Ahmedabad','1223',9601486744,2)”;
 		
 
+INSERT INTO user (id,username,firstname,lastname,email,address,password,phone,roleid) VALUES(2,’teacher’,’teacher’,’teacher', 'teacher@gmail.com','Ahmedabad’,’teacher’,9601486744,1);
+
 
 ALTER TABLE users ADD coupon_code varchar;
 
@@ -93,3 +95,27 @@ cqlsh:smsdb> select * from user where username ='sam' ALLOW FILTERING;
 		}
 
 	}
+
+==============
+
+
+			//System.out.println("Query Resultset for particaular user"+login.getUsername()+","+querystudentresult.all());
+			//List<Student> list1 = new ArrayList<Student>();
+			//list1.add(new Student("Maths",89,"SS",90,"Sasads"));
+		
+			//Row roww = querystudentresult.one();
+			
+			//list1.add(new Student(roww.getString("sub_mathss").toString(),roww.getInt("sub_maths_marks"),roww.getString("sub_ss").toString(),roww.getInt("sub_ss_marks"),roww.getString("username")));
+		
+			
+			
+//			for (Row roww : querystudentresult.all()) {
+//				
+//				System.out.println("MATHSSSSSS"+roww.getString("sub_maths"));
+//				list1.add(new Student(roww.getString("sub_mathss").toString(),roww.getInt("sub_maths_marks"),roww.getString("sub_ss").toString(),roww.getInt("sub_ss_marks"),roww.getString("username")));
+//				
+//			//	list1.add(new Student("Maths",89,"SS",90,"Sasads"));
+//			
+//			
+//			}
+

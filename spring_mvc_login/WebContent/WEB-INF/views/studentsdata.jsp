@@ -15,7 +15,7 @@ User: ${firstname}
 
 
  
-  
+  Can EDIT /UPDATE/DELETE
   
 <table border="2" width="70%" cellpadding="2">  
 <tr><th>Username</th><th>Maths</th><th>Marks</th><th>SS</th><th>Marks</th></tr>  
@@ -28,14 +28,13 @@ User: ${firstname}
    <td>${emp.sub_ss}</td>  
    <td>${emp.sub_ss_marks}</td>  
    
- 
+   <td><a href="editstudent/${emp.username}">Edit</a></td>  
+   <td><a href="deletestudent/${emp.username}">Delete</a></td>  
    
    </tr>  
    </c:forEach>  
-  
    </table>  
-<br>
-  Result
+
 
 </body>
 </html>

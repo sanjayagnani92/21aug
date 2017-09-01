@@ -15,7 +15,6 @@ body {
 }
 
 
-tr:nth-child(even){background-color: #f2f2f2}
 </style>
         </head>
         <body>
@@ -23,7 +22,7 @@ tr:nth-child(even){background-color: #f2f2f2}
          Registration Page
         <hr>
             <form:form id="regForm" modelAttribute="user" action="registerProcess" method="post">
-                <table align="center">
+                <table align ="center">
                     <tr>
                         <td>
                             <form:label path="username">Username</form:label>

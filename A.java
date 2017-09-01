@@ -93,6 +93,18 @@ String query = "CREATE TABLE users(id int PRIMARY KEY, "
 			     + "phone int );";
 		
 
-NSERT INTO sanjay(id,username,firstname,lastname,email,address,password,phone) VALUES(2,'sanjayaganani92','sanjay','Agnani','sanjagnani92gmail.com','Ahmedabad','1223','901486744');
+INSERT INTO sanjay(id,username,firstname,lastname,email,address,password,phone) VALUES(2,'sanjayaganani92','sanjay','Agnani','sanjagnani92gmail.com','Ahmedabad','1223','901486744');
+
+
+CREATE TABLE students (
+  id int,
+  username text,
+  sub_maths text,
+  sub_maths_marks int,
+  sub_ss text,
+  sub_ss_marks int,
+PRIMARY KEY (username)
+);
+
 
 	

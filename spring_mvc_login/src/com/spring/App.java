@@ -17,7 +17,7 @@ public class App {
 		
 		System.out.println("*********Cluster Information *************");
 		System.out.println(" Cluster Name is: " + cluster.getClusterName() );
-		System.out.println(" Driver Version is: " + cluster.getDriverVersion() );
+	//	System.out.println(" Driver Version is: " + cluster.getDriverVersion() );
 		System.out.println(" Cluster Configuration is: " + cluster.getConfiguration() );
 		System.out.println(" Cluster Metadata is: " + cluster.getMetadata() );
 		System.out.println(" Cluster Metrics is: " + cluster.getMetrics() );		
