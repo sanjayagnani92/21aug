@@ -35,6 +35,7 @@ User: ${firstname}
    </c:forEach>  
    </table>  
 
+ <a href="logout">Logout</a>
 
 </body>
 </html>

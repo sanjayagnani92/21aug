@@ -7,10 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-${message}
 
 
- <a href="logout">Logout</a>
-               
+Page not Found ...
+
+Please Check Later on ....
+
+<% java.util.Date d = new java.util.Date();
+                out.println(d.toString()); %>
+
 </body>
 </html>

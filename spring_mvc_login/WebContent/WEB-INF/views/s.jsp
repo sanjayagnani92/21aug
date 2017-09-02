@@ -36,6 +36,7 @@ User: ${firstname}
    </table>  
 <br>
   Result
+ <a href="logout">Logout</a>
 
 </body>
 </html>
