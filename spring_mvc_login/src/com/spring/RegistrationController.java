@@ -17,8 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -40,19 +39,23 @@ import com.datastax.driver.core.Session;
 public class RegistrationController {
 	
 	
-	private static Logger logger = LogManager.getLogger(RegistrationController.class.getName());
-
+	//private static Logger logger = LogManager.getLogger(RegistrationController.class.getName());
+	private static Logger logger = LogManager.getRootLogger();
+	
 	Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
-	Session session = cluster.connect("smsdb");
-
+	Session session= cluster.connect("smsdb");
+	
 	int globalid =100;
 	
 	
 	@RequestMapping("/")
 	public String login(Model model, HttpServletRequest request) {
+//PropertyConfigurator.configure("log4j.properties");
+
+		
 		
 		logger.info("Route Controller Main Page");
-		
+
 		logger.trace("This is a Trace");
         logger.debug("This is a Debug");
         logger.info("This is an Info");
@@ -101,7 +104,7 @@ public class RegistrationController {
          HttpSession httpSession = request.getSession();
          httpSession.invalidate();
          logger.info("logout Method");
-         return "redirect:/";
+         return "home";
      }
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
@@ -128,6 +131,7 @@ public class RegistrationController {
 				+ user.getLastname() + "', '" + user.getEmail() + "','" + user.getAddress() + "','" + user.getPassword()
 				+ "'," + user.getPhone() + "," + 2 + ")";
 
+		logger.fatal(query);
 		String query1 = "Insert into students(id,username)VALUES(" + uniqueID + ",'" + user.getUsername() + "')";
 		session.execute(query);
 		session.execute(query1);
@@ -165,10 +169,11 @@ public class RegistrationController {
 			}
 			
 			
-			String querystddetails = "select username,sub_maths,sub_ss,sub_maths_marks,sub_ss_marks from students where username ='" + username
+			String query = "select username,sub_maths,sub_ss,sub_maths_marks,sub_ss_marks from students where username ='" + username
 			+ "' ALLOW FILTERING; ";
-	session.execute(querystddetails);
-	ResultSet querystudentresult = session.execute(querystddetails);
+			logger.fatal(query);
+	session.execute(query);
+	ResultSet querystudentresult = session.execute(query);
 	List<Student> list1 = new ArrayList<Student>();
 	
 
@@ -218,122 +223,7 @@ public class RegistrationController {
 	}
 
 		
-		@RequestMapping(value = "/loginProcess", method = RequestMethod.POST)
-		public ModelAndView loginprocess(HttpServletRequest request, HttpServletResponse response, Model model,
-				@ModelAttribute("login") Login login) {
-
-			
-			
-			String uname = login.getUsername();
-			
-			String s = "sanjay";
-			int id = 100;
-			String query = "select password, roleid from user where username ='" + login.getUsername() + "' ALLOW FILTERING; ";
-			ResultSet result = session.execute(query);
-			
-			
-			for (Row row : result) {
-				String passwordd = row.getString("password");
-				int roleid = row.getInt("roleid");
-				id = roleid;
-				System.out.println("Fetched Rowset results"+row);
-				s = passwordd;
-			}
-
-			
-
-			HttpSession sessionn=request.getSession();  
-			sessionn.setAttribute("id",id);  
-			globalid=id;
-			
-			if (s.compareTo(login.getPassword()) == 0 && id == 2) {
-				model.addAttribute("message", login.getUsername() + " Student Logged in Successfully");
-				String querystddetails = "select username,sub_maths,sub_ss,sub_maths_marks,sub_ss_marks from students where username ='" + login.getUsername()
-						+ "' ALLOW FILTERING; ";
-				//String querystddetails = "Select * from students";
-				session.execute(querystddetails);
-				ResultSet querystudentresult = session.execute(querystddetails);
-				List<Student> list1 = new ArrayList<Student>();
-				
-	 
-				for(Row row: querystudentresult)
-				{
-					
-					String username=row.getString("username");
-					String sub_maths=row.getString("sub_maths");
-					
-				   int sub_maths_marks=row.getInt("sub_maths_marks");
-
-				   String sub_ss=row.getString("sub_ss");
-
-				int sub_ss_marks=row.getInt("sub_ss_marks");
-				list1.add(new Student(sub_maths,sub_maths_marks,sub_ss,sub_ss_marks,username));
-			
-				
-
-				}
-
-
-				logger.info(id);
-			return new ModelAndView("s", "list1", list1);
-
-				// return "s";
-
-			}
-
-			// && id ==1
-			else if (s.compareTo(login.getPassword()) == 0 && id == 1) {
-				
-				if(id==2)
-					
-				{
-					String list = "Not Authorised";
-					return new ModelAndView("login", "list", list);
-				}
-				model.addAttribute("message", login.getUsername() + " Teacher Logged in Successfully");
-
-				String querystddetails = "Select * from students";
-				session.execute(querystddetails);
-				ResultSet querystudentresult = session.execute(querystddetails);
-				List<Student> list1 = new ArrayList<Student>();
-				
-	 
-				for(Row row: querystudentresult)
-				{
-					
-					String username=row.getString("username");
-					String sub_maths=row.getString("sub_maths");
-					
-				int sub_maths_marks=row.getInt("sub_maths_marks");
-
-				String sub_ss=row.getString("sub_ss");
-
-				int sub_ss_marks=row.getInt("sub_ss_marks");
-				list1.add(new Student(sub_maths,sub_maths_marks,sub_ss,sub_ss_marks,username));
-			
-				
-
-				}
-
-		
-				return new ModelAndView("studentsdata", "list1", list1);
-
-			}
-
-			
-			else 
-			{
-				model.addAttribute("message", "Please check entered username and password");
-
-				String list = "";
-				return new ModelAndView("login", "list", list);
-
-			}
-
-		}
-
-
-
+	
 		}
 	
 	

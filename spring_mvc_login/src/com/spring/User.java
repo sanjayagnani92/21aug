@@ -64,5 +64,14 @@ public class User {
 	  public void setPhone(int phone) {
 	  this.phone = phone;
 	  }
+
+	@Override
+	public String toString() {
+		return "User [username=" + username + ", password=" + password + ", firstname=" + firstname + ", lastname="
+				+ lastname + ", email=" + email + ", address=" + address + ", phone=" + phone + "]";
+	}
+	  
+	  
+	  
 }
 
