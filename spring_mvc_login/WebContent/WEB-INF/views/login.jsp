@@ -54,7 +54,7 @@ loginForm {
                     <tr></tr>
                     <tr>
                         <td></td>
-                        <td><a href="home">Home</a>
+                        <td><a id ="home" href="home">Home</a>
                         </td>
                     </tr>
                 </table>

@@ -29,14 +29,14 @@ public class InsertTest {
 		Session session= cluster.connect("smsdb");
 
 		
-		String query = "select password, roleid from user where username ='" + logintest.getUsername() + "' ALLOW FILTERING; ";
+		String query = "select password, roleid from user where username ='" + usertest.getUsername() + "' ALLOW FILTERING; ";
 		ResultSet rs = session.execute(query);
 		System.out.println("Query Statement:"+query);
 		
 		if(rs == null)
 		{
 			
-			assertEquals(logintest.getPassword(),passwordd);
+			assertEquals(usertest.getPassword(),passwordd);
 		}
 		
 		for (Row row : rs) {
@@ -44,7 +44,7 @@ public class InsertTest {
 			System.out.println(passwordd);
 			
 			}
-		assertEquals(logintest.getPassword(), passwordd);
+		assertEquals(usertest.getPassword(), passwordd);
 		
 		
 	}
