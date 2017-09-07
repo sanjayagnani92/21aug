@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th ="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8"/>
+<title>Insert title here</title>
+
+    <div th:replace="fragments/header :: header-css"/>
+
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"/>
+
+Last Name : <span th:text="${student.lastname}"></span><br/>
+
+ AGE : <span th:text="${student.age}"></span><br/>
+
+
+
+First Name : <span th:text="${student.firstname}"></span><br/>
+
+
+
+Last Name : <span th:text="${student.lastname}"></span><br/>
+
+ AGE : <span th:text="${student.age}"></span><br/>
+
+
+
+First Name : <span th:text="${student.firstname}"></span><br/>
+
+Last Name : <span th:text="${student.lastname}"></span><br/>
+
+ AGE : <span th:text="${student.age}"></span><br/>
+
+
+
+First Name : <span th:text="${student.firstname}"></span><br/>
+
+Last Name : <span th:text="${student.lastname}"></span><br/>
+
+ AGE : <span th:text="${student.age}"></span><br/>
+
+
+
+First Name : <span th:text="${student.firstname}"></span><br/>
+
+
+<div th:replace="fragments/footer :: footer"/>
+</body>
+</html>

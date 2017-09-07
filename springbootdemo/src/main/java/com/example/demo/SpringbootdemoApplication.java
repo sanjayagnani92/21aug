@@ -10,14 +10,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @SpringBootApplication
 
 @Controller
-@ComponentScan({"demo","controller"})
+@ComponentScan({"com.example.demo","com.example.demo.controller"})
 public class SpringbootdemoApplication {
 
-	@ResponseBody
+	//@ResponseBody
+	//Uncomment to just return string as Response Body
 	@RequestMapping("/")
 	String entry()
 	{
-		return "My String boot app";
+		return "home";
 		
 	}
 	
