@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +17,7 @@ import com.example.demo.model.Student;
 @ComponentScan
 public class StudentController {
 	
-
+HttpSession session;
 	
 	
 
@@ -32,5 +34,19 @@ public class StudentController {
 		
 	}
 	
+	@RequestMapping(value="/editstudent/{username}")
+	public String editstudent(){
+		
+		if(session.getId()=="2"){
+			
+			System.out.println(session.getId());
+		}
+		return "teachersdetails";
+	}
+	
+	@RequestMapping(value="/deletestudent/{username}")
+	public String deletestudent(){
+		return "teachersdetails";
+	}
 
 }

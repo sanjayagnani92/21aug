@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
@@ -17,7 +19,7 @@ public class SpringbootdemoApplication {
 	//Uncomment to just return string as Response Body
 	@RequestMapping("/")
 	String entry()
-	{
+	{	
 		return "home";
 		
 	}

@@ -1,13 +1,36 @@
 <!DOCTYPE html>
-<html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8"/>
 <title>Insert title here</title>
 </head>
 <body>
+<table>
+<tr th:each="student,iterStat :${messages}"> 
+<td><span th:text="${student.username}"></span></td>
 
-Teacher's page
+<td><span th:text="${student.sub_maths}"></span></td>
+
+<td><span th:text="${student.sub_maths_marks}"></span></td>
+
+<td><span th:text="${student.sub_ss}"></span></td>
+
+
+<td><span th:text="${student.sub_ss_marks}"></span></td>
+
+
+
+<td><a th:href ="|@{/editstudent/$${student.username}}|">Edit</a></td>
+
+<td><a th:href ="|@{/deletestudent/$${student.username}}|">Delete</a></td>
+</tr>
+
+
+
+</table>
 
 <a href="logout" id = "logout">Logout</a>
+
 </body>
 </html>
